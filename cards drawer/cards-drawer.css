@@ -1,0 +1,364 @@
+/* ==========================================================================
+   Design Tokens & Resets
+   ========================================================================== */
+
+:root {
+  --bg-color: #F9EEDC;
+  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  font-family: var(--font-family);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1.5rem;
+  user-select: none;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 36px;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 760px;
+}
+
+.card-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 334px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ==========================================================================
+   Landing Animations
+   ========================================================================== */
+
+@keyframes cardEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes contentFadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDownDrawer {
+  0% {
+    transform: translateY(-90%);
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   Common Card Structure
+   ========================================================================== */
+
+.card-top {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  border-radius: 26px 26px 20px 20px;
+  padding: 25px 24px 22px 24px;
+  border: none;
+  animation: cardEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  animation: contentFadeSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.12s backwards;
+}
+
+.header-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.plan-title {
+  font-size: 1.16rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.plan-subtitle {
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.subtle-divider {
+  height: 1px;
+  margin: 16px 0 20px 0;
+  width: 100%;
+  animation: contentFadeSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.18s backwards;
+}
+
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: contentFadeSlideUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+.feature-item:nth-child(1) { animation-delay: 0.22s; }
+.feature-item:nth-child(2) { animation-delay: 0.28s; }
+.feature-item:nth-child(3) { animation-delay: 0.34s; }
+.feature-item:nth-child(4) { animation-delay: 0.40s; }
+
+.feature-text {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 2px;
+  animation: contentFadeSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.46s backwards;
+}
+
+.price-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.price-val {
+  font-size: 1.28rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.price-sub {
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.figma-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.figma-logo {
+  fill: currentColor;
+}
+
+.figma-tag-text {
+  line-height: 1;
+}
+
+.card-bottom {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin-top: -24px;
+  padding: 42px 18px 22px 18px;
+  border-radius: 0 0 26px 26px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  animation: slideDownDrawer 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.52s backwards;
+  transition: opacity 0.2s ease;
+}
+
+.btn-text {
+  font-family: var(--font-family);
+  font-size: 0.94rem;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+}
+
+/* ==========================================================================
+   Card A (Light Mode Variant)
+   ========================================================================== */
+
+.card-light .card-top {
+  background: linear-gradient(172deg, #F2DFB6 0%, #E8D2AB 32%, #DAC09D 65%, #D5BB9A 100%);
+  box-shadow: 0 10px 16px -2px rgba(18, 14, 8, 0.45);
+}
+
+.card-light .header-icon-box {
+  background-color: #150A00;
+  color: #F0DDB3;
+}
+
+.card-light .plan-title {
+  color: #150A00;
+}
+
+.card-light .plan-subtitle {
+  color: #483929;
+}
+
+.card-light .subtle-divider {
+  background: rgba(190, 160, 130, 0.35);
+}
+
+.card-light .feature-item {
+  color: #2A241E;
+}
+
+.card-light .feature-icon {
+  color: #2A241E;
+}
+
+.card-light .price-val {
+  color: #221200;
+}
+
+.card-light .price-sub {
+  color: #826A4F;
+}
+
+.card-light .figma-tag {
+  background-color: #150A00;
+  color: #DEC5AB;
+}
+
+.card-light .card-bottom {
+  background: linear-gradient(180deg, #181512 0%, #25221F 45%, #2A2825 100%);
+  box-shadow: 
+    0 22px 34px -8px rgba(45, 38, 30, 0.32),
+    0 8px 14px -3px rgba(45, 38, 30, 0.16);
+}
+
+.card-light .btn-text {
+  color: #B6B19C;
+}
+
+.card-light .card-bottom:hover .btn-text {
+  color: #DDD4C4;
+}
+
+/* ==========================================================================
+   Card B (Dark Mode Variant)
+   ========================================================================== */
+
+.card-dark .card-top {
+  background: linear-gradient(175deg, #2E2A28 0%, #242220 40%, #1A1918 100%);
+  box-shadow: 0 12px 18px -2px rgba(0, 0, 0, 0.55);
+}
+
+.card-dark .header-icon-box {
+  background: linear-gradient(145deg, #35302C 0%, #221E1C 100%);
+  color: #E7D3BF;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.card-dark .plan-title {
+  color: #E7D3BF;
+}
+
+.card-dark .plan-subtitle {
+  color: #94948A;
+}
+
+.card-dark .subtle-divider {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.card-dark .feature-item {
+  color: #D3C9BF;
+}
+
+.card-dark .feature-icon {
+  color: #D3C9BF;
+}
+
+.card-dark .price-val {
+  color: #DFD5C6;
+}
+
+.card-dark .price-sub {
+  color: #8A847A;
+}
+
+/* Inverted Light Figma Pill in Card B */
+.card-dark .figma-tag {
+  background-color: #FFEED2;
+  color: #121006;
+}
+
+/* Tan Bottom Drawer in Card B (Matches upper card of Card A exactly) */
+.card-dark .card-bottom {
+  background: linear-gradient(172deg, #F2DFB6 0%, #E8D2AB 32%, #DAC09D 65%, #D5BB9A 100%);
+  box-shadow: 
+    0 22px 34px -8px rgba(45, 38, 30, 0.28),
+    0 8px 14px -3px rgba(45, 38, 30, 0.14);
+}
+
+.card-dark .btn-text {
+  color: #150A00;
+}
+
+.card-dark .card-bottom:hover .btn-text {
+  color: #38322B;
+}
